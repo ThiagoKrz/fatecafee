@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título Atualizado -->
+    <title>Fate Café - Artoria Pendragon (Alter)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; background-color: #2A2320; color: #EAE0D5; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Exo 2', sans-serif; }
+        .sidebar { background-color: #3E322F; border-right: 2px solid #5A4A44; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; border-left: 4px solid transparent; transition: all 0.2s ease-in-out; color: #D4A373; }
+        .sidebar-link:hover { background-color: #5A4A44; border-left-color: #D4A373; }
+        .sidebar-link.active { background-color: #2A2320; border-left-color: #D4A373; color: #FFFFFF; font-weight: 600; }
+        .section-title { color: #D4A373; border-bottom: 2px solid #5A4A44; padding-bottom: 0.5rem; }
+        .lore-list li { position: relative; padding-left: 1.25rem; }
+        .lore-list li::before { content: '•'; position: absolute; left: 0; top: 0; color: #D4A373; }
+    </style>
+</head>
+<body class="selection:bg-amber-600 selection:text-white">
+
+    <div class="flex h-screen">
+        <!-- Sidebar Fixa -->
+        <aside class="sidebar w-64 h-full overflow-y-auto shadow-lg">
+            <a href="https://www.youtube.com/c/FateCaf%C3%A9" target="_blank" rel="noopener noreferrer" class="block p-6 text-center transition-opacity duration-200 hover:opacity-90">
+                <img src="./logo.png" alt="Logo Fate Café" class="h-16 w-16 object-contain rounded-full mx-auto mb-3">
+                <h1 class="text-2xl font-extrabold text-white">Fate Café</h1>
+            </a>
+            <nav class="mt-4">
+                <a href="../home.html" class="sidebar-link">Início</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Projetos</h3>
+                <a href="../traducoes.html" class="sidebar-link">Traduções (VNs)</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Banco de Dados (Fate)</h3>
+                <a href="../servos.html" class="sidebar-link active">Servos</a>
+                <a href="../glossario.html" class="sidebar-link">Glossário de Lore</a>
+                <a href="../materiais.html" class="sidebar-link">Artbooks e Materiais</a>
+                <a href="../entrevistas.html" class="sidebar-link">Entrevistas (Nasu)</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Comunidade</h3>
+                <a href="../recursos.html" class="sidebar-link">Recursos e Guias</a>
+            </nav>
+        </aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="flex-1 h-full overflow-y-auto">
+            <div class="container mx-auto px-6 md:px-10 pt-12 pb-24">
+
+                <!-- Conteúdo do Perfil Estático (Artoria Alter) -->
+                <article>
+                    
+                    <header class="text-center mb-10">
+                        <h2 class="text-5xl font-bold text-white">Artoria Pendragon (Alter)</h2>
+                        <p class="text-2xl text-[#D4A373] capitalize">Saber - ★★★★</p>
+                    </header>
+
+                   <div class="flex flex-col lg:flex-row gap-10">
+                        <!-- Coluna da Esquerda: Imagem e Stats -->
+                        <aside class="w-full lg:w-1/3 space-y-8">
+                            
+                            <div class="bg-[#3E322F] p-4 rounded-lg border border-[#5A4A44]">
+                                <!-- IMAGENS CORRIGIDAS (100200) -->
+                                <img id="servant-image-display" src="https://static.atlasacademy.io/NA/CharaGraph/100200/100200a@1.png" alt="Arte da Artoria" class="w-full rounded-md aspect-square object-contain">
+                                
+                                <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1002000.png" alt="Asc 1" class="w-16 h-16 rounded-md cursor-pointer border-2 border-[#D4A373] hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100200/100200a@1.png'">
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1002001.png" alt="Asc 2" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100200/100200a@2.png'">
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1002002.png" alt="Asc 3" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100200/100200a@3.png'">
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1002003.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100200/100200a@4.png'">
+                                </div>
+                            </div>
+                            
+                            <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
+                                <h3 class="text-2xl font-bold section-title mb-4">Informações</h3>
+                                <div class="space-y-2 text-lg">
+                                    <p><strong>CV:</strong> <span class="text-[#EAE0D5]">Kawasumi Ayako</span></p>
+                                    <p><strong>Ilustrador:</strong> <span class="text-[#EAE0D5]">Takeuchi Takashi</span></p>
+                                    <p><strong>Atributo:</strong> <span class="text-[#EAE0D5] capitalize">Man</span></p>
+                                    <p><strong>Gênero:</strong> <span class="text-[#EAE0D5] capitalize">Female</span></p>
+                                    <p><strong>Alinhamento:</strong> <span class="text-[#EAE0D5] capitalize">Lawful Evil</span></p>
+                                    <p><strong>Traits:</strong> <span class="text-[#EAE0D5] text-sm">Artoria Face, Dragon, Humanoid, King, Riding, Saber Face, Servant, Weak to Enuma Elish</span></p>
+                                </div>
+                                
+                                <h3 class="text-2xl font-bold section-title mt-6 mb-4">Parâmetros</h3>
+                                <div class="grid grid-cols-3 gap-2 text-center">
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">FOR</span><span class="block text-xl font-bold text-white">A</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">RES</span><span class="block text-xl font-bold text-white">A</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">AGI</span><span class="block text-xl font-bold text-white">D</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">MAN</span><span class="block text-xl font-bold text-white">A++</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">SOR</span><span class="block text-xl font-bold text-white">C</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">NP</span><span class="block text-xl font-bold text-white">A++</span></div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <!-- Coluna da Direita: Seções de Lore (WIKI) -->
+                        <section class="w-full lg:w-2/3 space-y-8">
+                            
+                            <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
+                                <h3 class="text-3xl font-bold section-title mb-6">Perfil</h3>
+                                <p class="text-[#EAE0D5] leading-relaxed">
+                                    Uma versão alternativa de Artoria Pendragon, corrompida pela lama negra do Santo Graal na Guerra de Fuyuki. Ela é a "Tirana Sombria".
+                                    <br><br>
+                                    Invocada como "Saber Alter", ela empunha a Excalibur Morgan, uma versão sombria da espada sagrada. Embora mantenha sua identidade, sua personalidade é drasticamente alterada, tornando-se fria, impiedosa e brutalmente eficiente, abandonando o idealismo que definia sua versão original.
+                                </p>
+                            </div>
+
+                            <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
+                                <h3 class="text-3xl font-bold section-title mb-6">Personalidade</h3>
+                                <p class="text-[#EAE0D5] leading-relaxed">
+                                    Saber Alter é cínica, pragmática e não hesita em usar força total. Ela se refere a si mesma como uma tirana, governando através do medo e do poder.
+                                    <br><br>
+                                    Apesar de sua natureza sombria, ela ainda retém seu apetite voraz, mas agora prefere junk food e hambúrgueres a comidas refinadas. Ela é uma força da natureza implacável, focada apenas em seus objetivos.
+                                </p>
+                            </div>
+
+                            <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
+                                <h3 class="text-3xl font-bold section-title mb-6">Aparições Principais</h3>
+                                <ul class="text-[#EAE0D5] space-y-2 lore-list">
+                                    <li>Fate/stay night (Rota: Heaven's Feel)</li>
+                                    <li>Fate/Grand Order (Principalmente em Shinjuku)</li>
+                                    <li>Fate/hollow ataraxia</li>
+                                    <li>Carnival Phantasm (Segmento "Alter")</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
+                                <h3 class="text-3xl font-bold section-title mb-6">Curiosidades</h3>
+                                <ul class="text-[#EAE0D5] space-y-2 lore-list">
+                                    <li>Sua "Excalibur Morgan: Espada da Promessa Sombria" dispara um feixe de energia caótica pura.</li>
+                                    <li>Ela possui uma quantidade "infinita" de Mana Burst devido à sua conexão com o Graal, permitindo que ela use seus ataques mais poderosos repetidamente.</li>
+                                    <li>Em Fate/Grand Order, ela é uma antagonista central na singularidade de Shinjuku, ao lado de James Moriarty.</li>
+                                </ul>
+                            </div>
+
+                        </section>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <footer class="mt-16 border-t border-[#5A4A44] py-10 bg-[#3E322F]">
+                <div class="container mx-auto px-6 text-center text-[#9B8D82]">
+                    <p>&copy; 2025 Fate Café. Todos os direitos pertencem à Type-Moon.</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
