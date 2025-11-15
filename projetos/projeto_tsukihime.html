@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fate Café - Projeto Tsukihime</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; background-color: #2A2320; color: #EAE0D5; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Exo 2', sans-serif; }
+        .sidebar { background-color: #3E322F; border-right: 2px solid #5A4A44; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; border-left: 4px solid transparent; transition: all 0.2s ease-in-out; color: #D4A373; }
+        .sidebar-link:hover { background-color: #5A4A44; border-left-color: #D4A373; }
+        .sidebar-link.active { background-color: #2A2320; border-left-color: #D4A373; color: #FFFFFF; font-weight: 600; }
+        .section-title { color: #D4A373; border-bottom: 2px solid #5A4A44; padding-bottom: 0.5rem; }
+        .progress-bar-bg { background-color: #5A4A44; }
+        .progress-bar-fill { background-color: #D4A373; }
+    </style>
+</head>
+<body class="selection:bg-amber-600 selection:text-white">
+
+    <div class="flex h-screen">
+        <!-- Sidebar Fixa -->
+        <aside class="sidebar w-64 h-full overflow-y-auto shadow-lg">
+            <a href="https://www.youtube.com/c/FateCaf%C3%A9" target="_blank" rel="noopener noreferrer" class="block p-6 text-center transition-opacity duration-200 hover:opacity-90">
+                <!-- Caminho do logo atualizado para subir um nível -->
+                <img src="../logo.png" alt="Logo Fate Café" class="h-16 w-16 object-contain rounded-full mx-auto mb-3">
+                <h1 class="text-2xl font-extrabold text-white">Fate Café</h1>
+            </a>
+            <nav class="mt-4">
+                <!-- Caminhos atualizados para subir um nível -->
+                <a href="../home.html" class="sidebar-link">Início</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Projetos</h3>
+                <a href="../traducoes.html" class="sidebar-link active">Traduções (VNs)</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Banco de Dados (Fate)</h3>
+                <a href="../servos.html" class="sidebar-link">Servos</a>
+                <a href="../glossario.html" class="sidebar-link">Glossário de Lore</a>
+                <a href="../materiais.html" class="sidebar-link">Artbooks e Materiais</a>
+                <a href="../entrevistas.html" class="sidebar-link">Entrevistas (Nasu)</a>
+                <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Comunidade</h3>
+                <a href="../recursos.html" class="sidebar-link">Recursos e Guias</a>
+            </nav>
+        </aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="flex-1 h-full overflow-y-auto">
+            <div class="container mx-auto px-6 md:px-10 pt-12 pb-24">
+
+                <h2 class="text-5xl font-bold text-white text-center mb-10">Projeto: Tsukihime Remake</h2>
+
+                <!-- Banner do Projeto -->
+                <div class="w-full overflow-hidden rounded-lg shadow-lg mb-10 border border-[#5A4A44]">
+                    <!-- Imagem tsuki.avif (subindo um nível) -->
+                    <img src="../tsuki2.jpg" alt="Banner do Projeto Tsukihime" class="w-full h-auto object-cover">
+                </div>
+
+                <!-- Layout de 2 Colunas -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+                    <!-- Coluna Esquerda (Conteúdo) -->
+                    <div class="lg:col-span-2 space-y-8">
+
+                        <!-- Sinopse -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-3xl font-bold section-title mb-6">Sinopse</h3>
+                            <p class="text-[#EAE0D5] leading-relaxed text-lg">
+                                "Tsukihime -A piece of blue glass moon-" é o remake da lendária Visual Novel da Type-Moon. A história segue Shiki Tohno, um jovem que, após um acidente de infância, ganha os "Olhos Místicos de Percepção da Morte", permitindo-lhe ver as linhas que conectam todas as coisas à morte.
+                                <br><br>
+                                Após anos vivendo longe, ele retorna à mansão Tohno e se vê arrastado para um mundo sombrio de vampiros, executores da Igreja e mistérios sobrenaturais, começando com seu encontro fatídico com a misteriosa princesa Arcueid Brunestud.
+                            </p>
+                        </div>
+
+                        <!-- Screenshots -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-3xl font-bold section-title mb-6">Screenshots</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <!-- ATUALIZADO: Adicionadas classes para o lightbox -->
+                                <img src="./tsuki_1.jpg" alt="Screenshot 1" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_2.jpg" alt="Screenshot 2" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_3.jpg" alt="Screenshot 3" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_4.jpg" alt="Screenshot 4" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                            </div>
+                        </div>
+
+                        <!-- NOVA SEÇÃO: Instruções de Instalação -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-3xl font-bold section-title mb-6">Instruções de Instalação</h3>
+                            <div class="text-[#EAE0D5] leading-relaxed text-lg space-y-4">
+                                <p>Siga estes passos para aplicar a tradução (exemplo):</p>
+                                <ol class="list-decimal list-inside space-y-2 mt-4">
+                                    <li>Compre e instale o jogo original (Steam/Nuuvem/etc).</li>
+                                    <li>Baixe nosso patch de tradução no link ao lado.</li>
+                                    <li>Extraia o conteúdo do arquivo .zip na pasta raiz do jogo.</li>
+                                    <li>Substitua todos os arquivos quando perguntado.</li>
+                                    <li>Execute o jogo pelo executável principal. Bom jogo!</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Coluna Direita (Status) -->
+                    <div class="lg:col-span-1 space-y-8">
+
+                        <!-- Progresso do Projeto -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-3xl font-bold section-title mb-6">Status do Projeto</h3>
+                            
+                            <h4 class="text-xl font-bold text-white mb-3">Rota Arcueid</h4>
+                            <div class="space-y-4 mb-6">
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>Tradução (Roteiro)</span>
+                                        <span class="font-semibold">69%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>Revisão</span>
+                                        <span class="font-semibold">69%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>QC (Controle de Qualidade)</span>
+                                        <span class="font-semibold">69%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="text-xl font-bold text-white mb-3">Rota Ciel</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>Tradução (Roteiro)</span>
+                                        <span class="font-semibold">29%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>Revisão</span>
+                                        <span class="font-semibold">29%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
+                                        <span>QC (Controle de Qualidade)</span>
+                                        <span class="font-semibold">29%</span>
+                                    </div>
+                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ATUALIZADO: Seção de Download para Link de Tradução -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-3xl font-bold section-title mb-6">Tradução</h3>
+                            <p class="text-gray-400 text-sm mb-4">Versão 1.0 (Beta)</p>
+                            <a href="#" class="w-full text-center block bg-[#D4A373] text-[#2A2320] font-bold py-3 px-6 rounded-lg hover:bg-[#C9A66B] transition-colors duration-300">
+                                Baixar Patch (v1.0)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ADICIONADO: Lightbox Modal HTML -->
+            <div id="lightbox" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50" onclick="closeLightbox()">
+                <img id="lightbox-image" src="" alt="Screenshot em tela cheia" class="max-w-[90vw] max-h-[90vh] rounded-md object-contain">
+                <!-- Botão de fechar -->
+                <button class="absolute top-4 right-4 text-white text-5xl font-bold">&times;</button>
+            </div>
+
+            <footer class="mt-16 border-t border-[#5A4A44] py-10 bg-[#3E322F]">
+                <div class="container mx-auto px-6 text-center text-[#9B8D82]">
+                    <p>&copy; 2025 Fate Café. Todos os direitos pertencem à Type-Moon.</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- ADICIONADO: Lightbox JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            const screenshots = document.querySelectorAll('.screenshot-thumb');
+
+            screenshots.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    lightboxImage.src = thumb.src; 
+                    lightbox.classList.remove('hidden');
+                });
+            });
+        });
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
