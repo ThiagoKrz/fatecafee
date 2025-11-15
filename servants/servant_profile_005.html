@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fate Café - Mash Kyrielight</title>
+    <!-- Título Atualizado -->
+    <title>Fate Café - Nero Claudius</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,20 +15,10 @@
         .sidebar { background-color: #3E322F; border-right: 2px solid #5A4A44; }
         .sidebar-link { display: block; padding: 0.75rem 1.5rem; border-left: 4px solid transparent; transition: all 0.2s ease-in-out; color: #D4A373; }
         .sidebar-link:hover { background-color: #5A4A44; border-left-color: #D4A373; }
-        .sidebar-link.active { background-color: #2A2320; border-left-color: #D4A373; color: #FFFFFF; font-weight: 600; }
+        .sidebar-link.active { background-color: #2A20; border-left-color: #D4A373; color: #FFFFFF; font-weight: 600; }
         .section-title { color: #D4A373; border-bottom: 2px solid #5A4A44; padding-bottom: 0.5rem; }
-        /* Estilo para listas */
-        .lore-list li {
-            position: relative;
-            padding-left: 1.25rem; /* Espaço para o "bullet" */
-        }
-        .lore-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #D4A373; /* Cor do bullet */
-        }
+        .lore-list li { position: relative; padding-left: 1.25rem; }
+        .lore-list li::before { content: '•'; position: absolute; left: 0; top: 0; color: #D4A373; }
     </style>
 </head>
 <body class="selection:bg-amber-600 selection:text-white">
@@ -57,58 +48,53 @@
         <main class="flex-1 h-full overflow-y-auto">
             <div class="container mx-auto px-6 md:px-10 pt-12 pb-24">
 
-                <!-- Conteúdo do Perfil Estático (Mash) -->
+                <!-- Conteúdo do Perfil Estático (Nero Claudius) -->
                 <article>
                     
-                    <!-- Cabeçalho: Nome, Classe, Raridade -->
                     <header class="text-center mb-10">
-                        <h2 class="text-5xl font-bold text-white">Mash Kyrielight</h2>
-                        <p class="text-2xl text-[#D4A373] capitalize">Shielder - ★★★</p>
+                        <h2 class="text-5xl font-bold text-white">Nero Claudius</h2>
+                        <p class="text-2xl text-[#D4A373] capitalize">Saber - ★★★★</p>
                     </header>
 
                     <div class="flex flex-col lg:flex-row gap-10">
                         <!-- Coluna da Esquerda: Imagem e Stats -->
                         <aside class="w-full lg:w-1/3 space-y-8">
                             
-                            <!-- Imagem e Ascensões -->
                             <div class="bg-[#3E322F] p-4 rounded-lg border border-[#5A4A44]">
-                                <!-- Imagem Principal (Arte Completa) -->
-                                <img id="servant-image-display" src="https://static.atlasacademy.io/JP/CharaGraph/800100/800100a@1.png" alt="Arte da Mash" class="w-full rounded-md aspect-square object-contain">
+                                <!-- Imagem Principal (ID 100500) -->
+                                <img id="servant-image-display" src="https://static.atlasacademy.io/NA/CharaGraph/100500/100500a@1.png" alt="Arte da Nero" class="w-full rounded-md aspect-square object-contain">
                                 
-                                <!-- Botões de Ascensão (Faces) -->
                                 <div class="flex flex-wrap gap-2 mt-4 justify-center">
-                                    <img src="https://static.atlasacademy.io/JP/Faces/f_8001000.png" alt="Asc 1" class="w-16 h-16 rounded-md cursor-pointer border-2 border-[#D4A373] hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/JP/CharaGraph/800100/800100a@1.png'">
-                                    <img src="https://static.atlasacademy.io/JP/Faces/f_8001001.png" alt="Asc 2" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/JP/CharaGraph/800100/800100a@2.png'">
-                                    <img src="https://static.atlasacademy.io/JP/Faces/f_8001002.png" alt="Asc 3" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/JP/CharaGraph/800100/800100b@1.png'">
-                                    <img src="https://static.atlasacademy.io/JP/Faces/f_8001003.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/JP/CharaGraph/800100/800100b@2.png'">
-                                    <img src="https://static.atlasacademy.io/NA/Faces/f_8001300.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/800130/800130a.png'">
-                                    <img src="https://static.atlasacademy.io/NA/Faces/f_8001400.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/800140/800140a.png'">
-                                    <img src="https://static.atlasacademy.io/NA/Faces/f_8001500.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/800150/800150a.png'">
-                                    <img src="https://static.atlasacademy.io/NA/Faces/f_8001600.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/800160/800160a.png'">
-                                    <img src="https://static.atlasacademy.io/NA/Faces/f_8001700.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/800170/800170a.png'">
+                                    <!-- Face ID f_1005000 -->
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1005000.png" alt="Asc 1" class="w-16 h-16 rounded-md cursor-pointer border-2 border-[#D4A373] hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100500/100500a@1.png'">
+                                    <!-- Face ID f_1005001 -->
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1005001.png" alt="Asc 2" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100500/100500a@2.png'">
+                                    <!-- Face ID f_1005002 -->
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1005002.png" alt="Asc 3" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100500/100500a@3.png'">
+                                    <!-- Face ID f_1005003 -->
+                                    <img src="https://static.atlasacademy.io/NA/Faces/f_1005003.png" alt="Asc 4" class="w-16 h-16 rounded-md cursor-pointer border-2 border-transparent hover:border-white" onclick="document.getElementById('servant-image-display').src='https://static.atlasacademy.io/NA/CharaGraph/100500/100500a@4.png'">
                                 </div>
                             </div>
                             
-                            <!-- Stats e Informações -->
                             <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
                                 <h3 class="text-2xl font-bold section-title mb-4">Informações</h3>
                                 <div class="space-y-2 text-lg">
-                                    <p><strong>CV:</strong> <span class="text-[#EAE0D5]">Takahashi Rie</span></p>
-                                    <p><strong>Ilustrador:</strong> <span class="text-[#EAE0D5]">Takeuchi Takashi</span></p>
-                                    <p><strong>Atributo:</strong> <span class="text-[#EAE0D5] capitalize">Earth</span></p>
+                                    <p><strong>CV:</strong> <span class="text-[#EAE0D5]">Tange Sakura</span></p>
+                                    <p><strong>Ilustrador:</strong> <span class="text-[#EAE0D5]">Wada Arco</span></p>
+                                    <p><strong>Atributo:</strong> <span class="text-[#EAE0D5] capitalize">Man</span></p>
                                     <p><strong>Gênero:</strong> <span class="text-[#EAE0D5] capitalize">Female</span></p>
-                                    <p><strong>Alinhamento:</strong> <span class="text-[#EAE0D5] capitalize">Lawful Good</span></p>
-                                    <p><strong>Traits:</strong> <span class="text-[#EAE0D5] text-sm">Humanoid, Servant, Shielder, Female, Ortenaus</span></p>
+                                    <p><strong>Alinhamento:</strong> <span class="text-[#EAE0D5] capitalize">Chaotic Good</span></p>
+                                    <p><strong>Traits:</strong> <span class="text-[#EAE0D5] text-sm">Humanoid, King, Riding, Roman, Saber Face, Servant, Weak to Enuma Elish</span></p>
                                 </div>
                                 
                                 <h3 class="text-2xl font-bold section-title mt-6 mb-4">Parâmetros</h3>
                                 <div class="grid grid-cols-3 gap-2 text-center">
                                     <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">FOR</span><span class="block text-xl font-bold text-white">D</span></div>
-                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">RES</span><span class="block text-xl font-bold text-white">B</span></div>
-                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">AGI</span><span class="block text-xl font-bold text-white">C</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">RES</span><span class="block text-xl font-bold text-white">D</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">AGI</span><span class="block text-xl font-bold text-white">A</span></div>
                                     <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">MAN</span><span class="block text-xl font-bold text-white">B</span></div>
-                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">SOR</span><span class="block text-xl font-bold text-white">C</span></div>
-                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">NP</span><span class="block text-xl font-bold text-white">C</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">SOR</span><span class="block text-xl font-bold text-white">B</span></div>
+                                    <div class="bg-[#5A4A44] p-2 rounded"><span class="block text-sm text-[#D4A373]">NP</span><span class="block text-xl font-bold text-white">B</span></div>
                                 </div>
                             </div>
                         </aside>
@@ -116,45 +102,40 @@
                         <!-- Coluna da Direita: Seções de Lore (WIKI) -->
                         <section class="w-full lg:w-2/3 space-y-8">
                             
-                            <!-- Seção Perfil -->
                             <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
                                 <h3 class="text-3xl font-bold section-title mb-6">Perfil</h3>
                                 <p class="text-[#EAE0D5] leading-relaxed">
-                                    Mash Kyrielight (マシュ・キリエライト) é a primeira Demi-Serva de Chaldea. Ela se fundiu com um Espírito Heróico durante a explosão inicial, tornando-se a única Serva da classe Shielder.
+                                    A infame quinta Imperatriz Romana, Nero Claudius Caesar Augustus Germanicus. Ela é uma artista autoproclamada que se vê como a personificação da beleza e da arte.
                                     <br><br>
-                                    Sua identidade como Serva é Galahad, um dos Cavaleiros da Távola Redonda, que lhe concedeu seus poderes e seu escudo, que é um fragmento da própria Távola.
+                                    Embora lembrada historicamente como uma tirana opressora, esta versão de Nero é invocada como uma Saber alegre e extravagante. Ela empunha a "Aestus Estus: A Chama Original", uma espada que ela mesma nomeou.
                                 </p>
                             </div>
 
-                            <!-- Seção Personalidade -->
                             <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
                                 <h3 class="text-3xl font-bold section-title mb-6">Personalidade</h3>
                                 <p class="text-[#EAE0D5] leading-relaxed">
-                                    Mash é fundamentalmente gentil, educada e séria. Por ter vivido toda a sua vida dentro de Chaldea, ela é inicialmente ingênua sobre o mundo exterior e suas interações sociais.
+                                    Extremamente confiante, egocêntrica e carismática, Nero acredita ser a maior artista que já existiu (apesar de seu canto e arte serem... questionáveis). Ela ama seu povo com sinceridade, mas seu narcisismo e sua busca extravagante pela beleza muitas vezes a cegam para a realidade.
                                     <br><br>
-                                    Ela é extremamente leal ao Protagonista, a quem ela carinhosamente (e teimosamente) chama de "Senpai". Seu crescimento de uma garota protegida para uma guerreira determinada é um pilar central de sua história.
+                                    Ela exige ser o centro das atenções e se refere ao seu Mestre como "Praetor". Sua palavra favorita é "Umu!" (Sim!).
                                 </p>
                             </div>
 
-                            <!-- Seção Aparições -->
                             <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
                                 <h3 class="text-3xl font-bold section-title mb-6">Aparições Principais</h3>
                                 <ul class="text-[#EAE0D5] space-y-2 lore-list">
-                                    <li>Fate/Grand Order (Papel Principal)</li>
-                                    <li>Fate/Grand Order -First Order- (Anime)</li>
-                                    <li>Fate/Grand Order: Camelot (Filmes)</li>
-                                    <li>Fate/Grand Order: Solomon (Filme)</li>
-                                    <li>Fate/Grand Carnival (OVA)</li>
+                                    <li>Fate/EXTRA (Serva Principal)</li>
+                                    <li>Fate/EXTELLA (Personagem Principal)</li>
+                                    <li>Fate/Grand Order (Singularidade de Septem)</li>
+                                    <li>Fate/EXTRA Last Encore (Anime)</li>
                                 </ul>
                             </div>
 
-                            <!-- Seção Curiosidades -->
                             <div class="bg-[#3E322F] p-6 rounded-lg border border-[#5A4A44]">
                                 <h3 class="text-3xl font-bold section-title mb-6">Curiosidades</h3>
                                 <ul class="text-[#EAE0D5] space-y-2 lore-list">
-                                    <li>O Fantasma Nobre de Galahad, "Lord Camelot", é a manifestação do desejo de Galahad por um "castelo impenetrável" que não fere ninguém.</li>
-                                    <li>Seu companheiro, Fou, é revelado mais tarde como Primate Murder, uma das Bestas da Calamidade.</li>
-                                    <li>Ela é tecnicamente uma "Designer Baby", criada artificialmente por Chaldea.</li>
+                                    <li>Ela é frequentemente confundida com Artoria Pendragon devido à sua aparência (uma "Saber Face"), algo que a irrita.</li>
+                                    <li>Sua skill "Privilégio Imperial" permite que ela obtenha temporariamente habilidades que ela normalmente não possuiria, contanto que ela "acredite" que pode.</li>
+                                    <li>Seu Fantasma Nobre, "Aestus Domus Aurea", cria uma realidade de seu teatro dourado, onde ela tem vantagem absoluta.</li>
                                 </ul>
                             </div>
 
