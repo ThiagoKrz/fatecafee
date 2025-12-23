@@ -34,6 +34,24 @@
         .rota-arcueid { background-color: #B48E5D; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
         .rota-ciel { background-color: #5D7BB4; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
         .rota-comum { background-color: #8C766D; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Classes para expandir/colapsar */
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .details-content.open {
+            max-height: 2000px; /* Altura suficiente para mostrar tudo */
+            opacity: 1;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-btn.active .toggle-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="selection:bg-amber-600 selection:text-white">
@@ -88,172 +106,197 @@
                             </p>
                         </div>
 
-                        <!-- Tabela de Progresso Detalhada -->
-                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44] overflow-x-auto">
-                            <h3 class="text-3xl font-bold section-title mb-6">Progresso Detalhado</h3>
-                            
-                            <!-- A classe 'auto-color-table' ativa o script de coloração automática -->
-                            <!-- A classe 'auto-calc-total' ativa o cálculo automático dos totais -->
-                            <table class="w-full text-sm text-left status-table min-w-[600px] auto-color-table auto-calc-total">
-                                <thead>
-                                    <tr>
-                                        <th class="w-1/3">Script</th>
-                                        <th class="w-24">Tradução</th>
-                                        <th class="w-24">Revisão</th>
-                                        <th class="w-24">Edição</th>
-                                        <th class="w-24">Progresso</th>
-                                        <th class="hidden sm:table-cell">Responsáveis</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rota Comum -->
-                                    <tr><td colspan="6" class="rota-comum">Rota Comum / Prólogo</td></tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">0 / Glass Moon</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão, Hakata</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">Prologue</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">1 / Morning of Homecoming I</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">2 / Day that Wasn't</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">3 / Inversion Impulse</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">4 / Infernal River of Blood I</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
-                                    </tr>
+                        <!-- Seção Expansível de Progresso Detalhado -->
+                        <div class="bg-[#3E322F] rounded-lg shadow-lg border border-[#5A4A44] overflow-hidden">
+                            <!-- Cabeçalho do Botão -->
+                            <button id="toggle-details-btn" class="toggle-btn w-full p-6 flex flex-col sm:flex-row items-center justify-between bg-[#4A3B36] hover:bg-[#5A4A44] transition-colors text-left focus:outline-none">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-[#D4A373] flex items-center gap-2">
+                                        <span class="toggle-icon">▼</span> Progresso Detalhado
+                                    </h3>
+                                    <p class="text-sm text-[#9B8D82] mt-1">Clique para ver o status de cada capítulo individualmente.</p>
+                                </div>
+                                
+                                <!-- Resumo Rápido (Visível quando fechado) -->
+                                <div class="mt-4 sm:mt-0 flex gap-4 text-center">
+                                    <div class="bg-[#2A2320] px-4 py-2 rounded border border-[#B48E5D]">
+                                        <div class="text-xs text-[#B48E5D] font-bold uppercase">Arcueid</div>
+                                        <div class="text-xl font-bold text-white" id="summary-arcueid">100%</div>
+                                    </div>
+                                    <div class="bg-[#2A2320] px-4 py-2 rounded border border-[#5D7BB4]">
+                                        <div class="text-xs text-[#5D7BB4] font-bold uppercase">Ciel</div>
+                                        <div class="text-xl font-bold text-white" id="summary-ciel">15%</div>
+                                    </div>
+                                </div>
+                            </button>
 
-                                    <!-- Rota Arcueid -->
-                                    <tr><td colspan="6" class="rota-arcueid">Rota Arcueid (Moon Princess)</td></tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">5 / Infernal River of Blood II</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">6 / Cerulean Stigma</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Unoxya</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">7 / Eyes of Death Perception I</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">8 / Eyes of Death Perception II</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity, Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">9 / Death.</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">10 / Blacked Out Moon (Bad End)</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">10 / Scarlet Moon of Crimson I</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">11 / Scarlet Moon of Crimson II</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">12 / Night of Ill-Omen</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">13 / The Moon's Surface</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">14 / Moon Princess</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
+                            <!-- Conteúdo da Tabela (Oculto inicialmente) -->
+                            <div id="details-content" class="details-content bg-[#3E322F] px-6 pb-6">
+                                <div class="mt-6 overflow-x-auto">
+                                    <!-- A classe 'auto-color-table' ativa o script de coloração automática -->
+                                    <!-- A classe 'auto-calc-total' ativa o cálculo automático dos totais -->
+                                    <table class="w-full text-sm text-left status-table min-w-[600px] auto-color-table auto-calc-total">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-1/3">Script</th>
+                                                <th class="w-24">Tradução</th>
+                                                <th class="w-24">Revisão</th>
+                                                <th class="w-24">Edição</th>
+                                                <th class="w-24">Progresso</th>
+                                                <th class="hidden sm:table-cell">Responsáveis</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Rota Comum -->
+                                            <tr><td colspan="6" class="rota-comum">Rota Comum / Prólogo</td></tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">0 / Glass Moon</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão, Hakata</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">Prologue</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">1 / Morning of Homecoming I</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">2 / Day that Wasn't</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">3 / Inversion Impulse</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">4 / Infernal River of Blood I</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                            </tr>
 
-                                    <!-- Rota Ciel -->
-                                    <tr><td colspan="6" class="rota-ciel">Rota Ciel (Rainbow in the Night)</td></tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">3 / Inversion Impulse (Ciel)</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">4 / Infernal River of Blood I (Ciel)</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">5 / Distant Sea of Frost</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">6 / Vermillion Vestiges I</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">7 / Reverse Hatching I</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">8 / Reverse Hatching II</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">9 / L'Arc-en-Ciel I</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">10 / L'Arc-en-Ciel II</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">11 / Epilogue</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">12 / Vermillion Vestiges II</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">13 / Mirage</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">14 / Stone of Eternity</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">15 / Rainbow in the Night</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">15 / Daylight Blue</td>
-                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    <tr class="data-row">
-                                        <td class="text-left font-semibold">Teach me, Ciel-sensei!</td>
-                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
-                                    </tr>
-                                    
-                                    <!-- Linha de Total Calculada Automaticamente -->
-                                    <tr class="total-row">
-                                        <td class="text-left font-semibold bg-[#4A3B36] text-[#D4A373]">Tsukihime Remake (Total)</td>
-                                        <td id="total-traducao" class="font-bold bg-[#3E322F]">--</td>
-                                        <td id="total-revisao" class="font-bold bg-[#3E322F]">--</td>
-                                        <td id="total-edicao" class="font-bold bg-[#3E322F]">--</td>
-                                        <td id="total-progresso" class="font-bold bg-[#3E322F]">--</td>
-                                        <td class="hidden sm:table-cell text-xs text-[#9B8D82] bg-[#3E322F]">-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <!-- Rota Arcueid -->
+                                            <tr><td colspan="6" class="rota-arcueid">Rota Arcueid (Moon Princess)</td></tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">5 / Infernal River of Blood II</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">6 / Cerulean Stigma</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Unoxya</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">7 / Eyes of Death Perception I</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">8 / Eyes of Death Perception II</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity, Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">9 / Death.</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">10 / Blacked Out Moon (Bad End)</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">10 / Scarlet Moon of Crimson I</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">11 / Scarlet Moon of Crimson II</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">12 / Night of Ill-Omen</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">13 / The Moon's Surface</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">14 / Moon Princess</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+
+                                            <!-- Rota Ciel -->
+                                            <tr><td colspan="6" class="rota-ciel">Rota Ciel (Rainbow in the Night)</td></tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">3 / Inversion Impulse (Ciel)</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">4 / Infernal River of Blood I (Ciel)</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">5 / Distant Sea of Frost</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">6 / Vermillion Vestiges I</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">7 / Reverse Hatching I</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">8 / Reverse Hatching II</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">9 / L'Arc-en-Ciel I</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">10 / L'Arc-en-Ciel II</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">11 / Epilogue</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">12 / Vermillion Vestiges II</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">13 / Mirage</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">14 / Stone of Eternity</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">15 / Rainbow in the Night</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">15 / Daylight Blue</td>
+                                                <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            <tr class="data-row">
+                                                <td class="text-left font-semibold">Teach me, Ciel-sensei!</td>
+                                                <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                            </tr>
+                                            
+                                            <!-- Linha de Total Calculada Automaticamente -->
+                                            <tr class="total-row">
+                                                <td class="text-left font-semibold bg-[#4A3B36] text-[#D4A373]">Tsukihime Remake (Total)</td>
+                                                <td id="total-traducao" class="font-bold bg-[#3E322F]">--</td>
+                                                <td id="total-revisao" class="font-bold bg-[#3E322F]">--</td>
+                                                <td id="total-edicao" class="font-bold bg-[#3E322F]">--</td>
+                                                <td id="total-progresso" class="font-bold bg-[#3E322F]">--</td>
+                                                <td class="hidden sm:table-cell text-xs text-[#9B8D82] bg-[#3E322F]">-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Screenshots -->
@@ -392,9 +435,18 @@
         </main>
     </div>
 
-    <!-- Scripts: Lightbox e Auto Colorização da Tabela -->
+    <!-- Scripts: Lightbox, Auto Colorização, Cálculo e Expansão -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Toggle da Seção de Detalhes ---
+            const toggleBtn = document.getElementById('toggle-details-btn');
+            const detailsContent = document.getElementById('details-content');
+            
+            toggleBtn.addEventListener('click', () => {
+                toggleBtn.classList.toggle('active');
+                detailsContent.classList.toggle('open');
+            });
+
             // --- Auto Colorização e Cálculo de Totais ---
             const rows = document.querySelectorAll('.auto-color-table .data-row');
             
@@ -465,7 +517,6 @@
             
             if (sideTotalProgress) sideTotalProgress.textContent = avgProgresso + '%';
             if (sideTotalBar) sideTotalBar.style.width = avgProgresso + '%';
-
 
             // --- Lightbox ---
             const lightbox = document.getElementById('lightbox');
