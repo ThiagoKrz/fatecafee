@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fate Café - Projeto Tsukihime</title>
+    <title>Fate Café - Projeto Tsukihime Remake</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,28 +18,43 @@
         .section-title { color: #D4A373; border-bottom: 2px solid #5A4A44; padding-bottom: 0.5rem; }
         .progress-bar-bg { background-color: #5A4A44; }
         .progress-bar-fill { background-color: #D4A373; }
+        
+        /* Lightbox CSS */
+        .lightbox-open { overflow: hidden; }
+
+        /* Estilos da Tabela */
+        .status-table th, .status-table td { padding: 0.75rem; border: 1px solid #5A4A44; text-align: center; }
+        .status-table th { background-color: #4A3B36; color: #D4A373; font-weight: bold; }
+        
+        /* Classes de Status (Aplicadas via JS ou manual) */
+        .status-100 { background-color: rgba(20, 83, 45, 0.6) !important; color: #86efac !important; } /* Verde para 100% */
+        .status-mid { background-color: rgba(113, 63, 18, 0.6) !important; color: #fde047 !important; } /* Amarelo para 1-99% */
+        .status-0 { background-color: rgba(127, 29, 29, 0.6) !important; color: #fca5a5 !important; } /* Vermelho para 0% */
+        
+        .rota-arcueid { background-color: #B48E5D; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+        .rota-ciel { background-color: #5D7BB4; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+        .rota-comum { background-color: #8C766D; color: #2A2320; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="selection:bg-amber-600 selection:text-white">
 
     <div class="flex h-screen">
         <!-- Sidebar Fixa -->
-        <aside class="sidebar w-64 h-full overflow-y-auto shadow-lg">
+        <aside class="sidebar w-64 h-full overflow-y-auto shadow-lg hidden md:block">
             <a href="https://www.youtube.com/c/FateCaf%C3%A9" target="_blank" rel="noopener noreferrer" class="block p-6 text-center transition-opacity duration-200 hover:opacity-90">
-                <!-- Caminho do logo atualizado para subir um nível -->
+                <!-- Caminho relativo para subir um nível -->
                 <img src="../logo.png" alt="Logo Fate Café" class="h-16 w-16 object-contain rounded-full mx-auto mb-3">
                 <h1 class="text-2xl font-extrabold text-white">Fate Café</h1>
             </a>
             <nav class="mt-4">
-                <!-- Caminhos atualizados para subir um nível -->
                 <a href="../home.html" class="sidebar-link">Início</a>
                 <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Projetos</h3>
+                <!-- Active na página de projetos -->
                 <a href="../traducoes.html" class="sidebar-link active">Traduções (VNs)</a>
                 <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Banco de Dados (Fate)</h3>
                 <a href="../servos.html" class="sidebar-link">Servos</a>
                 <a href="../glossario.html" class="sidebar-link">Glossário de Lore</a>
                 <a href="../materiais.html" class="sidebar-link">Artbooks e Materiais</a>
-                <a href="../entrevistas.html" class="sidebar-link">Entrevistas (Nasu)</a>
                 <h3 class="text-xs uppercase text-[#9B8D82] font-semibold px-6 mt-6 mb-2">Comunidade</h3>
                 <a href="../recursos.html" class="sidebar-link">Recursos e Guias</a>
             </nav>
@@ -49,12 +64,12 @@
         <main class="flex-1 h-full overflow-y-auto">
             <div class="container mx-auto px-6 md:px-10 pt-12 pb-24">
 
-                <h2 class="text-5xl font-bold text-white text-center mb-10">Projeto: Tsukihime Remake</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-10">Projeto: Tsukihime -A piece of blue glass moon-</h2>
 
                 <!-- Banner do Projeto -->
                 <div class="w-full overflow-hidden rounded-lg shadow-lg mb-10 border border-[#5A4A44]">
-                    <!-- Imagem tsuki.avif (subindo um nível) -->
-                    <img src="../tsuki2.jpg" alt="Banner do Projeto Tsukihime" class="w-full h-auto object-cover">
+                    <!-- Imagem de capa -->
+                    <img src="../tsuki2.jpg" alt="Banner do Projeto Tsukihime" class="w-full h-auto object-cover max-h-[400px]">
                 </div>
 
                 <!-- Layout de 2 Colunas -->
@@ -67,36 +82,203 @@
                         <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
                             <h3 class="text-3xl font-bold section-title mb-6">Sinopse</h3>
                             <p class="text-[#EAE0D5] leading-relaxed text-lg">
-                                "Tsukihime -A piece of blue glass moon-" é o remake da lendária Visual Novel da Type-Moon. A história segue Shiki Tohno, um jovem que, após um acidente de infância, ganha os "Olhos Místicos de Percepção da Morte", permitindo-lhe ver as linhas que conectam todas as coisas à morte.
+                                "Tsukihime -A piece of blue glass moon-" é o aguardado remake da visual novel clássica que lançou a Type-Moon. A história se passa em uma Tóquio moderna e acompanha Shiki Tohno, um jovem estudante que possui os "Olhos Místicos de Percepção da Morte", uma habilidade que lhe permite ver a "morte" das coisas na forma de linhas.
                                 <br><br>
-                                Após anos vivendo longe, ele retorna à mansão Tohno e se vê arrastado para um mundo sombrio de vampiros, executores da Igreja e mistérios sobrenaturais, começando com seu encontro fatídico com a misteriosa princesa Arcueid Brunestud.
+                                Após a morte de seu pai, Shiki retorna à mansão da família Tohno, onde deve conviver com sua irmã rigorosa, Akiha, e as empregadas Hisui e Kohaku. No entanto, um encontro fatídico com uma misteriosa mulher loira chamada Arcueid Brunestud o arrasta para o lado oculto do mundo, repleto de Vampiros e Executores da Igreja.
                             </p>
+                        </div>
+
+                        <!-- Tabela de Progresso Detalhada -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44] overflow-x-auto">
+                            <h3 class="text-3xl font-bold section-title mb-6">Progresso Detalhado</h3>
+                            
+                            <!-- A classe 'auto-color-table' ativa o script de coloração automática -->
+                            <!-- A classe 'auto-calc-total' ativa o cálculo automático dos totais -->
+                            <table class="w-full text-sm text-left status-table min-w-[600px] auto-color-table auto-calc-total">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1/3">Script</th>
+                                        <th class="w-24">Tradução</th>
+                                        <th class="w-24">Revisão</th>
+                                        <th class="w-24">Edição</th>
+                                        <th class="w-24">Progresso</th>
+                                        <th class="hidden sm:table-cell">Responsáveis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rota Comum -->
+                                    <tr><td colspan="6" class="rota-comum">Rota Comum / Prólogo</td></tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">0 / Glass Moon</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão, Hakata</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">Prologue</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">1 / Morning of Homecoming I</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">2 / Day that Wasn't</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">3 / Inversion Impulse</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">4 / Infernal River of Blood I</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2, Cão</td>
+                                    </tr>
+
+                                    <!-- Rota Arcueid -->
+                                    <tr><td colspan="6" class="rota-arcueid">Rota Arcueid (Moon Princess)</td></tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">5 / Infernal River of Blood II</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">6 / Cerulean Stigma</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Unoxya</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">7 / Eyes of Death Perception I</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">8 / Eyes of Death Perception II</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Charity, Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">9 / Death.</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">10 / Blacked Out Moon (Bad End)</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">10 / Scarlet Moon of Crimson I</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">11 / Scarlet Moon of Crimson II</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">12 / Night of Ill-Omen</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">13 / The Moon's Surface</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">14 / Moon Princess</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+
+                                    <!-- Rota Ciel -->
+                                    <tr><td colspan="6" class="rota-ciel">Rota Ciel (Rainbow in the Night)</td></tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">3 / Inversion Impulse (Ciel)</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">4 / Infernal River of Blood I (Ciel)</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">Cão</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">5 / Distant Sea of Frost</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">mj-r2</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">6 / Vermillion Vestiges I</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">7 / Reverse Hatching I</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">8 / Reverse Hatching II</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">9 / L'Arc-en-Ciel I</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">10 / L'Arc-en-Ciel II</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">11 / Epilogue</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">12 / Vermillion Vestiges II</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">13 / Mirage</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">14 / Stone of Eternity</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">15 / Rainbow in the Night</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">15 / Daylight Blue</td>
+                                        <td class="col-traducao">0%</td><td class="col-revisao">0%</td><td class="col-edicao">0%</td><td class="col-progresso">0%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    <tr class="data-row">
+                                        <td class="text-left font-semibold">Teach me, Ciel-sensei!</td>
+                                        <td class="col-traducao">100%</td><td class="col-revisao">100%</td><td class="col-edicao">100%</td><td class="col-progresso">100%</td><td class="hidden sm:table-cell text-xs text-[#9B8D82]">-</td>
+                                    </tr>
+                                    
+                                    <!-- Linha de Total Calculada Automaticamente -->
+                                    <tr class="total-row">
+                                        <td class="text-left font-semibold bg-[#4A3B36] text-[#D4A373]">Tsukihime Remake (Total)</td>
+                                        <td id="total-traducao" class="font-bold bg-[#3E322F]">--</td>
+                                        <td id="total-revisao" class="font-bold bg-[#3E322F]">--</td>
+                                        <td id="total-edicao" class="font-bold bg-[#3E322F]">--</td>
+                                        <td id="total-progresso" class="font-bold bg-[#3E322F]">--</td>
+                                        <td class="hidden sm:table-cell text-xs text-[#9B8D82] bg-[#3E322F]">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                         <!-- Screenshots -->
                         <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
                             <h3 class="text-3xl font-bold section-title mb-6">Screenshots</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <!-- ATUALIZADO: Adicionadas classes para o lightbox -->
-                                <img src="./tsuki_1.jpg" alt="Screenshot 1" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
-                                <img src="./tsuki_2.jpg" alt="Screenshot 2" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
-                                <img src="./tsuki_3.jpg" alt="Screenshot 3" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
-                                <img src="./tsuki_4.jpg" alt="Screenshot 4" class="screenshot-thumb rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <img src="./tsuki_1.jpg" alt="Screenshot Tsukihime 1" class="screenshot-thumb w-full rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_2.jpg" alt="Screenshot Tsukihime 2" class="screenshot-thumb w-full rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_3.jpg" alt="Screenshot Tsukihime 3" class="screenshot-thumb w-full rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
+                                <img src="./tsuki_4.jpg" alt="Screenshot Tsukihime 4" class="screenshot-thumb w-full rounded-md border border-[#5A4A44] cursor-pointer hover:opacity-80 transition-opacity">
                             </div>
                         </div>
 
-                        <!-- NOVA SEÇÃO:  de Instalação -->
+                        <!-- Instruções de Instalação -->
                         <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
                             <h3 class="text-3xl font-bold section-title mb-6">Instruções de Instalação</h3>
                             <div class="text-[#EAE0D5] leading-relaxed text-lg space-y-4">
                                 <p>Siga estes passos para aplicar a tradução (exemplo):</p>
-                                <ol class="list-decimal list-inside space-y-2 mt-4">
+                                <ol class="list-decimal list-inside space-y-2 mt-4 ml-4">
                                     <li>Tenha uma cópia do jogo oficial e a instale em seu Switch ou Ryunjinx (Emulador de Switch), VERSÃO JP DO GAME.</li>
                                     <li>Baixe nosso patch de tradução no link ao lado.</li>
                                     <li>Extraia o conteúdo do arquivo .zip em alguma pasta.</li>
                                     <li>Instale o [Tsukihimates] Tsukihime ~A Piece of Blue Glass Moon~ Full Moon Patch - 2023.07.08.72cd291b9 [English].nsp como atualização do jogo na plataforma que for utilizar.</li>
-                                    <li>Para o Ryunjinx: Abra a pasta Mods do jogo -> Jogue a pasta romfs que extraiu anteriormente dentro da pasta mods que foi aberta -> Inicie o jogo.</li>
-                                    <li>Para o Switch Desbloqueado: Com seu switch conectado via DBI no seu PC, Abra a pasta SDCard -> Pasta Contents -> E aqui dentro, procure pelo id 01001DC01486A000, está é a pasta de mods do jogo -> Jogue a pasta romfs que extraiu anteriormente dentro da pasta 01001DC01486A000 -> Inicie o jogo.</li>
+                                    <li>Para o Ryunjinx: Abra a pasta Mods do jogo -> Jogue a pasta romfs que extraiu anteriormente dentro da pasta mods que foi aberta -> Inicie o jogo. <strong>Inicie o jogo e verifique se o logo do Fate Café aparece na introdução.</strong></li>
+                                    <li>Para o Switch Desbloqueado: Com seu switch conectado via DBI no seu PC, Abra a pasta SDCard -> Pasta Contents -> E aqui dentro, procure pelo id 01001DC01486A000, está é a pasta de mods do jogo -> Jogue a pasta romfs que extraiu anteriormente dentro da pasta 01001DC01486A000 -> Inicie o jogo. <strong>Inicie o jogo e verifique se o logo do Fate Café aparece na introdução.</strong></li>
                                 </ol>
                             </div>
                         </div>
@@ -110,76 +292,84 @@
                         <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
                             <h3 class="text-3xl font-bold section-title mb-6">Status do Projeto</h3>
                             
-                            <h4 class="text-xl font-bold text-white mb-3">Rota Arcueid</h4>
+                            <!-- Rota Arcueid -->
+                            <h4 class="text-xl font-bold text-white mb-3">Rota da Princesa (Arcueid)</h4>
                             <div class="space-y-4 mb-6">
                                 <div>
                                     <div class="flex justify-between text-sm text-[#D4A373] mb-1">
                                         <span>Tradução (Roteiro)</span>
-                                        <span class="font-semibold">69%</span>
+                                        <span class="font-semibold">100%</span>
                                     </div>
                                     <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 100%"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm text-[#D4A373] mb-1">
                                         <span>Revisão</span>
-                                        <span class="font-semibold">69%</span>
+                                        <span class="font-semibold">100%</span>
                                     </div>
                                     <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
-                                        <span>QC (Controle de Qualidade)</span>
-                                        <span class="font-semibold">69%</span>
-                                    </div>
-                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 69%"></div>
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 100%"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <h4 class="text-xl font-bold text-white mb-3">Rota Ciel</h4>
+                            <!-- Rota Ciel -->
+                            <h4 class="text-xl font-bold text-white mb-3">Rota do Arco-íris (Ciel)</h4>
                             <div class="space-y-4">
                                 <div>
                                     <div class="flex justify-between text-sm text-[#D4A373] mb-1">
                                         <span>Tradução (Roteiro)</span>
-                                        <span class="font-semibold">29%</span>
+                                        <span class="font-semibold">15%</span>
                                     </div>
                                     <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 15%"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm text-[#D4A373] mb-1">
                                         <span>Revisão</span>
-                                        <span class="font-semibold">29%</span>
+                                        <span class="font-semibold">0%</span>
                                     </div>
                                     <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
+                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 0%"></div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="flex justify-between text-sm text-[#D4A373] mb-1">
-                                        <span>QC (Controle de Qualidade)</span>
-                                        <span class="font-semibold">29%</span>
-                                    </div>
-                                    <div class="w-full progress-bar-bg rounded-full h-2.5">
-                                        <div class="progress-bar-fill h-2.5 rounded-full" style="width: 29%"></div>
-                                    </div>
+                            </div>
+                            
+                            <!-- Total Calculado Automaticamente -->
+                            <div class="mt-6 pt-4 border-t border-[#5A4A44]">
+                                <div class="flex justify-between text-sm text-white font-bold mb-1">
+                                    <span>Progresso Total</span>
+                                    <span id="side-total-progress">--</span>
+                                </div>
+                                <div class="w-full progress-bar-bg rounded-full h-4">
+                                    <div id="side-total-bar" class="progress-bar-fill h-4 rounded-full" style="width: 0%"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ATUALIZADO: Seção de Download para Link de Tradução -->
+                        <!-- Link de Tradução -->
                         <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
                             <h3 class="text-3xl font-bold section-title mb-6">Download da Tradução</h3>
                             <p class="text-gray-400 text-sm mb-4">Half-Moon - Rota Arcueid</p>
-                            <a href="https://drive.google.com/file/d/1qfSaLNptLYILZRG-hrO4q2rBUy7IrQB5/view?usp=sharing" class="w-full text-center block bg-[#D4A373] text-[#2A2320] font-bold py-3 px-6 rounded-lg hover:bg-[#C9A66B] transition-colors duration-300">
+                            
+                            <a href="https://drive.google.com/file/d/1qfSaLNptLYILZRG-hrO4q2rBUy7IrQB5/view?usp=sharing" class="w-full text-center block bg-[#D4A373] text-[#2A2320] font-bold py-3 px-6 rounded-lg hover:bg-[#C9A66B] mb-3 transition-colors">
                                 Baixar Patch Half-Moon
                             </a>
+                        </div>
+
+                        <!-- Informações Técnicas -->
+                        <div class="bg-[#3E322F] p-6 rounded-lg shadow-lg border border-[#5A4A44]">
+                            <h3 class="text-xl font-bold text-white mb-4">Ficha Técnica</h3>
+                            <ul class="text-sm text-[#EAE0D5] space-y-2">
+                                <li><span class="text-[#D4A373] font-semibold">Desenvolvedora:</span> Type-Moon</li>
+                                <li><span class="text-[#D4A373] font-semibold">Roteiro:</span> Kinoko Nasu</li>
+                                <li><span class="text-[#D4A373] font-semibold">Arte:</span> Takeuchi Takashi</li>
+                                <li><span class="text-[#D4A373] font-semibold">Gênero:</span> Visual Novel, Fantasia Urbana</li>
+                                <li><span class="text-[#D4A373] font-semibold">Lançamento (JP):</span> 2021</li>
+                            </ul>
                         </div>
 
                     </div>
@@ -187,40 +377,124 @@
 
             </div>
 
-            <!-- ADICIONADO: Lightbox Modal HTML -->
-            <div id="lightbox" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50" onclick="closeLightbox()">
-                <img id="lightbox-image" src="" alt="Screenshot em tela cheia" class="max-w-[90vw] max-h-[90vh] rounded-md object-contain">
-                <!-- Botão de fechar -->
-                <button class="absolute top-4 right-4 text-white text-5xl font-bold">&times;</button>
+            <!-- Lightbox Modal -->
+            <div id="lightbox" class="fixed inset-0 bg-black/90 flex items-center justify-center p-4 hidden z-50 backdrop-blur-sm" onclick="closeLightbox()">
+                <img id="lightbox-image" src="" alt="Screenshot em tela cheia" class="max-w-[95vw] max-h-[90vh] rounded-lg shadow-2xl object-contain border-2 border-[#D4A373]">
+                <button class="absolute top-4 right-4 text-[#D4A373] hover:text-white text-5xl font-bold focus:outline-none">&times;</button>
             </div>
 
             <footer class="mt-16 border-t border-[#5A4A44] py-10 bg-[#3E322F]">
                 <div class="container mx-auto px-6 text-center text-[#9B8D82]">
                     <p>&copy; 2025 Fate Café. Todos os direitos pertencem à Type-Moon.</p>
+                    <p class="text-xs mt-2">Tsukihime e Fate são marcas registradas da Notes Co., Ltd.</p>
                 </div>
             </footer>
         </main>
     </div>
 
-    <!-- ADICIONADO: Lightbox JavaScript -->
+    <!-- Scripts: Lightbox e Auto Colorização da Tabela -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Auto Colorização e Cálculo de Totais ---
+            const rows = document.querySelectorAll('.auto-color-table .data-row');
+            
+            let totalTraducao = 0, totalRevisao = 0, totalEdicao = 0, totalProgresso = 0;
+            let count = 0;
+
+            rows.forEach(row => {
+                count++;
+                
+                // Helper para processar célula
+                const processCell = (cellClass) => {
+                    const cell = row.querySelector(`.${cellClass}`);
+                    if (!cell) return 0;
+                    
+                    const text = cell.textContent.trim();
+                    let val = 0;
+                    
+                    if (text.endsWith('%')) {
+                        val = parseFloat(text.replace('%', ''));
+                        if (!isNaN(val)) {
+                            // Aplica cor
+                            if (val === 100) {
+                                cell.classList.add('status-100');
+                            } else if (val > 0) {
+                                cell.classList.add('status-mid');
+                            } else {
+                                cell.classList.add('status-0');
+                            }
+                            return val;
+                        }
+                    }
+                    // Se não for número válido (ex: '--'), trata como 0 e aplica cor vermelha
+                    cell.classList.add('status-0');
+                    return 0;
+                };
+
+                totalTraducao += processCell('col-traducao');
+                totalRevisao += processCell('col-revisao');
+                totalEdicao += processCell('col-edicao');
+                totalProgresso += processCell('col-progresso');
+            });
+
+            // Calcula médias
+            const avgTraducao = count > 0 ? Math.round(totalTraducao / count) : 0;
+            const avgRevisao = count > 0 ? Math.round(totalRevisao / count) : 0;
+            const avgEdicao = count > 0 ? Math.round(totalEdicao / count) : 0;
+            const avgProgresso = count > 0 ? Math.round(totalProgresso / count) : 0;
+
+            // Atualiza linha de totais na tabela
+            const updateTotalCell = (id, val) => {
+                const cell = document.getElementById(id);
+                if (cell) {
+                    cell.textContent = val + '%';
+                    if (val === 100) cell.classList.add('status-100');
+                    else if (val > 0) cell.classList.add('status-mid');
+                    else cell.classList.add('status-0');
+                }
+            };
+
+            updateTotalCell('total-traducao', avgTraducao);
+            updateTotalCell('total-revisao', avgRevisao);
+            updateTotalCell('total-edicao', avgEdicao);
+            updateTotalCell('total-progresso', avgProgresso);
+
+            // Atualiza barra lateral
+            const sideTotalProgress = document.getElementById('side-total-progress');
+            const sideTotalBar = document.getElementById('side-total-bar');
+            
+            if (sideTotalProgress) sideTotalProgress.textContent = avgProgresso + '%';
+            if (sideTotalBar) sideTotalBar.style.width = avgProgresso + '%';
+
+
+            // --- Lightbox ---
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
             
-            const screenshots = document.querySelectorAll('.screenshot-thumb');
-
-            screenshots.forEach(thumb => {
-                thumb.addEventListener('click', () => {
+            document.querySelectorAll('.screenshot-thumb').forEach(thumb => {
+                thumb.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     lightboxImage.src = thumb.src; 
                     lightbox.classList.remove('hidden');
+                    document.body.classList.add('lightbox-open');
                 });
             });
         });
 
         function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightbox.classList.add('hidden');
+            document.body.classList.remove('lightbox-open');
+            lightboxImage.src = '';
         }
+
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
     </script>
 
 </body>
